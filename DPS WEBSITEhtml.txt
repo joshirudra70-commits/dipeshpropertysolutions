@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dipesh Property Solutions | Real Estate & PG Accommodations</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons for clean visuals -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Supabase JS Client library CDN -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0F172A',
+                            gold: '#D97706',
+                            goldHover: '#B45309',
+                            slateLight: '#F8FAFC',
+                            slateDark: '#1E293B',
+                            accentGreen: '#10B981',
+                            whatsapp: '#25D366',
+                            whatsappHover: '#20BA5A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-nav {
+            color: #D97706 !important;
+            border-bottom-color: #D97706 !important;
+        }
+        /* Page transition */
+        .page-view {
+            transition: opacity 0.2s ease-in-out;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+    </style>
+</head>
+<body class="bg-brand-slateLight text-slate-900 min-h-screen flex flex-col antialiased relative">
+
+    <!-- FLOATING WHATSAPP CHAT BUTTON (Always Visible) -->
+    <a href="https://wa.me/919869486859?text=Hello%20Dipesh%20Property%20Solutions,%20I%20am%20interested%20in%20your%20services." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="fixed bottom-6 right-6 z-[120] bg-brand-whatsapp text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:bg-brand-whatsappHover hover:scale-110 transition-all duration-300 group">
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 ease-in-out whitespace-nowrap text-sm font-bold flex items-center gap-2">
+            Chat on WhatsApp
+        </span>
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.83.001-2.624-1.013-5.091-2.855-6.937C16.638 1.993 14.168 1.05 11.56 1.05c-5.442 0-9.867 4.414-9.87 9.831-.001 1.77.472 3.5 1.371 5.013L2.015 21.8l6.035-1.585L8.05 20.21zm7.404-5.35c-.29-.146-1.713-.846-1.978-.942-.266-.097-.459-.146-.653.146-.193.29-.747.942-.916 1.136-.168.193-.337.217-.626.072-1.353-.679-2.24-1.185-3.136-2.721-.237-.406.237-.377.678-1.258.072-.146.037-.272-.018-.38-.056-.109-.459-1.107-.629-1.517-.165-.398-.332-.344-.459-.35-.12-.005-.257-.006-.395-.006-.137 0-.361.052-.55.257-.19.206-.723.707-.723 1.724s.74 2.005.843 2.14c.103.137 1.456 2.222 3.527 3.116 1.642.709 2.246.772 3.056.653.515-.076 1.713-.699 1.954-1.375.242-.676.242-1.257.17-1.376-.073-.12-.266-.194-.556-.34zm0 0"/>
+        </svg>
+    </a>
+
+    <!-- GLOBAL HEADER & NAVIGATION -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo with Google Drive Integration -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                    <img src="https://lh3.googleusercontent.com/d/1JjiTJaX5ZOPtGVQqnyyDkTp_h9gHJ4-2=w800-h800" 
+                         alt="Dipesh Property Solutions Logo" 
+                         class="w-12 h-12 object-contain rounded-lg border border-slate-100" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=100&q=80';">
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-tight text-brand-navy leading-none">Dipesh</span>
+                        <span class="text-xs font-bold text-brand-gold uppercase tracking-wider mt-0.5">Property Solutions</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-8 h-full font-semibold text-slate-600 text-[15px]">
+                    <a href="#home" id="nav-home" onclick="navigateTo('home')" class="hover:text-brand-navy border-b-2 border-transparent py-7 transition active-nav">Home</a>
+                    <a href="#listings" id="nav-listings" onclick="navigateTo('listings')" class="hover:text-brand-navy border-b-2 border-transparent py-7 transition">Browse Properties</a>
+                    <a href="#list-property" id="nav-list-property" onclick="navigateTo('list-property')" class="hover:text-brand-navy border-b-2 border-transparent py-7 transition">List Your Property</a>
+                    <a href="#contact" id="nav-contact" onclick="navigateTo('contact')" class="hover:text-brand-navy border-b-2 border-transparent py-7 transition">Contact & About</a>
+                </nav>
+
+                <!-- Database status indicator + CTA -->
+                <div class="hidden md:flex items-center gap-4">
+                    <span id="db-status-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-brand-gold border border-amber-200 cursor-pointer" onclick="alertDbStatus()">
+                        <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                        <span>Local Sandbox</span>
+                    </span>
+                    <button onclick="navigateTo('list-property')" class="bg-brand-navy text-white px-5 py-2.5 rounded-xl font-bold hover:bg-slate-800 transition-all shadow-md hover:shadow-lg text-sm flex items-center gap-2">
+                        <i data-lucide="plus-circle" class="w-4 h-4 text-brand-gold"></i>
+                        Contact us
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-3">
+                    <span id="db-status-badge-mobile" class="w-2.5 h-2.5 rounded-full bg-brand-gold" onclick="alertDbStatus()"></span>
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-600 hover:text-brand-navy focus:outline-none p-2 rounded-lg hover:bg-slate-100">
+                        <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6"></i>
+                        <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white shadow-lg animate-fadeIn">
+            <div class="px-4 pt-2 pb-6 space-y-3 font-semibold text-slate-600">
+                <a href="#home" onclick="navigateTo('home')" class="block px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-brand-navy transition">Home</a>
+                <a href="#listings" onclick="navigateTo('listings')" class="block px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-brand-navy transition">Browse Properties</a>
+                <a href="#list-property" onclick="navigateTo('list-property')" class="block px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-brand-navy transition">List Your Property</a>
+                <a href="#contact" onclick="navigateTo('contact')" class="block px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-brand-navy transition">Contact & About</a>
+                <button onclick="navigateTo('list-property'); toggleMobileMenu();" class="w-full text-center bg-brand-navy text-white px-4 py-3 rounded-xl font-bold hover:bg-slate-800 transition block mt-4">
+                    Post Free Listing
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="flex-grow">
+
+        <!-- ============================================== -->
+        <!-- PAGE 1: HOME PAGE -->
+        <!-- ============================================== -->
+        <section id="page-home" class="page-view animate-fadeIn">
+            <!-- Hero Banner -->
+            <div class="relative bg-brand-navy text-white py-28 px-4 overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px]"></div>
+                <div class="max-w-6xl mx-auto text-center relative z-10 flex flex-col items-center">
+                    <span class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-slate-800/80 border border-slate-700/50 text-brand-gold rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                        <i data-lucide="shield" class="w-3.5 h-3.5"></i> 23+ Years of Legacy & Trust
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl leading-[1.15]">
+                        Find Your Ideal <span class="text-brand-gold">Home</span> or Cozy <span class="text-brand-gold">PG Space</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl leading-relaxed">
+                        We build relationships and create homes. Discover fully furnished PG hostels or commercial & residential properties with 100% verified owners.
+                    </p>
+
+                    <!-- Dual Search Engine Card -->
+                    <div class="bg-white text-slate-900 p-5 rounded-2xl shadow-2xl max-w-3xl w-full border border-slate-100">
+                        <div class="flex gap-4 border-b border-slate-100 pb-4 mb-4 justify-center md:justify-start">
+                            <button id="search-tab-pg" onclick="switchSearchTab('pg')" class="px-5 py-2.5 font-bold text-sm tracking-wide rounded-lg bg-amber-50 text-brand-gold transition duration-200 flex items-center gap-2">
+                                <i data-lucide="bed" class="w-4 h-4"></i> Paying Guest (PG)
+                            </button>
+                            <button id="search-tab-re" onclick="switchSearchTab('re')" class="px-5 py-2.5 font-bold text-sm tracking-wide rounded-lg text-slate-400 hover:text-slate-600 transition duration-200 flex items-center gap-2">
+                                <i data-lucide="building" class="w-4 h-4"></i> Standard Real Estate
+                            </button>
+                        </div>
+
+                        <!-- Search Parameters Form -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="relative">
+                                <i data-lucide="map-pin" class="w-5 h-5 absolute left-3 top-3.5 text-slate-400"></i>
+                                <input type="text" id="home-search-location" placeholder="Select City or Locality..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-slate-800">
+                            </div>
+                            <div>
+                                <select id="home-search-filter" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent text-slate-600 appearance-none cursor-pointer">
+                                    <option value="any">Any Room/Sharing Type</option>
+                                    <option value="single">Single Occupancy</option>
+                                    <option value="double">Double Sharing</option>
+                                    <option value="triple">Triple Sharing</option>
+                                </select>
+                            </div>
+                            <button onclick="triggerHomeSearch()" class="w-full bg-brand-gold text-white font-bold rounded-xl py-3.5 hover:bg-brand-goldHover transition duration-200 shadow-md flex items-center justify-center gap-2">
+                                <i data-lucide="search" class="w-5 h-5"></i> Explore Options
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Dual Options Split -->
+            <div class="max-w-7xl mx-auto px-4 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand-navy tracking-tight">Two Verticals. One Hassle-free Experience.</h2>
+                    <p class="text-slate-500 mt-2 text-lg">We custom-tailor setups whether you are looking for local student shared PGs or verified family flat rentals.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- PG/Hostels Column banner -->
+                    <div class="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden p-8 text-white min-h-[320px] flex flex-col justify-between shadow-xl border border-slate-700/30 group">
+                        <div class="absolute right-0 bottom-0 opacity-20 transform translate-x-12 translate-y-12 group-hover:scale-110 transition duration-500">
+                            <i data-lucide="bed-double" class="w-72 h-72"></i>
+                        </div>
+                        <div class="relative z-10 max-w-md">
+                            <span class="bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full">For Students & Professionals</span>
+                            <h3 class="text-2xl md:text-3xl font-extrabold mt-4 mb-3">Managed PG Accommodations</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">Fully furnished spaces with modern infrastructure, regular cleaning, high-speed Wi-Fi, home-style meals, and flexible deposits.</p>
+                        </div>
+                        <button onclick="filterAndBrowse('pg')" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-6 py-3 rounded-xl transition w-fit text-sm flex items-center gap-2">
+                            Browse Shared Spaces <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Homes Column banner -->
+                    <div class="relative bg-gradient-to-br from-amber-950 to-amber-900 rounded-2xl overflow-hidden p-8 text-white min-h-[320px] flex flex-col justify-between shadow-xl border border-amber-800/30 group">
+                        <div class="absolute right-0 bottom-0 opacity-20 transform translate-x-12 translate-y-12 group-hover:scale-110 transition duration-500">
+                            <i data-lucide="building-2" class="w-72 h-72"></i>
+                        </div>
+                        <div class="relative z-10 max-w-md">
+                            <span class="bg-white text-brand-gold font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full">For Families & Investors</span>
+                            <h3 class="text-2xl md:text-3xl font-extrabold mt-4 mb-3">Residential Real Estate</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">Independent houses, high-end studio flats, family-centric gated societies, and apartments available for rent and sale with instant verification.</p>
+                        </div>
+                        <button onclick="filterAndBrowse('realestate')" class="bg-white text-amber-950 font-bold px-6 py-3 rounded-xl transition hover:bg-slate-50 w-fit text-sm flex items-center gap-2">
+                            Explore Properties <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= WHY CHOOSE US SECTION ================= -->
+            <div class="bg-white py-20 border-t border-slate-100">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-brand-gold text-xs font-extrabold uppercase tracking-widest bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200">Our Strengths</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-navy tracking-tight mt-3">Why Choose Dipesh Property Solutions?</h2>
+                        <p class="text-slate-500 mt-2 text-md">Building relationships, delivering trust, and simplifying property searching over more than two decades.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <!-- Card 1 -->
+                        <div class="bg-brand-slateLight p-8 rounded-2xl border border-slate-200/50 hover:shadow-lg hover:border-amber-500/20 transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-amber-50 text-brand-gold rounded-xl flex items-center justify-center font-bold text-xl mb-6 border border-amber-200 group-hover:bg-brand-navy group-hover:text-white transition-all duration-300">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-brand-navy mb-2">23+ Years of Legacy</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">Serving the housing market since 2003 with extreme transparent dealing ethics and clean legal document procedures.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-brand-slateLight p-8 rounded-2xl border border-slate-200/50 hover:shadow-lg hover:border-amber-500/20 transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-amber-50 text-brand-gold rounded-xl flex items-center justify-center font-bold text-xl mb-6 border border-amber-200 group-hover:bg-brand-navy group-hover:text-white transition-all duration-300">
+                                <i data-lucide="users-2" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-brand-navy mb-2">5,000+ Happy Clients</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">Trusted by thousands of families, working professionals, and university students seeking safe, high-quality shelter.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-brand-slateLight p-8 rounded-2xl border border-slate-200/50 hover:shadow-lg hover:border-amber-500/20 transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-amber-50 text-brand-gold rounded-xl flex items-center justify-center font-bold text-xl mb-6 border border-amber-200 group-hover:bg-brand-navy group-hover:text-white transition-all duration-300">
+                                <i data-lucide="search-check" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-brand-navy mb-2">100% Verified Listings</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">Every property and PG room layout goes through background checks. Zero fake details, zero hidden brokerage commissions.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="bg-brand-slateLight p-8 rounded-2xl border border-slate-200/50 hover:shadow-lg hover:border-amber-500/20 transition-all duration-300 group">
+                            <div class="w-12 h-12 bg-amber-50 text-brand-gold rounded-xl flex items-center justify-center font-bold text-xl mb-6 border border-amber-200 group-hover:bg-brand-navy group-hover:text-white transition-all duration-300">
+                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-brand-navy mb-2">A Promise of Quality</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed">For us, it's not just another transaction. We guarantee a homely living standard with absolute safety and secure environments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Properties Slider Panel -->
+            <div class="bg-slate-100 border-y border-slate-200/60 py-16">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy">Trending Highlights</h2>
+                            <p class="text-slate-500 mt-1">Our highly-rated, user-reviewed choices this month.</p>
+                        </div>
+                        <button onclick="navigateTo('listings')" class="mt-4 md:mt-0 text-brand-gold font-bold flex items-center gap-2 hover:text-brand-goldHover text-[15px] group">
+                            See All Available Listings <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="featured-listings-container">
+                        <!-- Filled dynamically by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DYNAMIC FAQ ACCORDION SECTION ================= -->
+            <div class="bg-white py-20">
+                <div class="max-w-4xl mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <span class="text-brand-gold text-xs font-extrabold uppercase tracking-widest bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200">Got Questions?</span>
+                        <h2 class="text-3xl font-extrabold text-brand-navy tracking-tight mt-3">Frequently Asked Questions</h2>
+                        <p class="text-slate-500 mt-2">Clear solutions to all your property leasing and shared PG onboarding queries.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <details class="group bg-brand-slateLight border border-slate-200/60 rounded-xl p-5 cursor-pointer hover:border-amber-500/30 transition-all duration-300">
+                            <summary class="font-bold text-[15px] text-brand-navy list-none flex justify-between items-center select-none">
+                                <span>How do we verify the standard PG accommodations?</span>
+                                <span class="transition-all duration-300 transform group-open:rotate-180 text-brand-gold">
+                                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed border-t border-slate-200/60 pt-3">
+                                Our dedicated validation officers physically inspect the living environments. We check for stable high-speed WiFi networks, proper hygienic food practices, surveillance system placements, and clean water supplies.
+                            </p>
+                        </details>
+
+                        <details class="group bg-brand-slateLight border border-slate-200/60 rounded-xl p-5 cursor-pointer hover:border-amber-500/30 transition-all duration-300">
+                            <summary class="font-bold text-[15px] text-brand-navy list-none flex justify-between items-center select-none">
+                                <span>Does Dipesh Property Solutions charge brokerage fees?</span>
+                                <span class="transition-all duration-300 transform group-open:rotate-180 text-brand-gold">
+                                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed border-t border-slate-200/60 pt-3">
+                                No! Our core website directory is 100% free of hidden brokerage charges for tenants and house seekers. You connect directly with owners using WhatsApp or the lead routing pipeline.
+                            </p>
+                        </details>
+
+                        <details class="group bg-brand-slateLight border border-slate-200/60 rounded-xl p-5 cursor-pointer hover:border-amber-500/30 transition-all duration-300">
+                            <summary class="font-bold text-[15px] text-brand-navy list-none flex justify-between items-center select-none">
+                                <span>Can I list my own empty room or family flat?</span>
+                                <span class="transition-all duration-300 transform group-open:rotate-180 text-brand-gold">
+                                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed border-t border-slate-200/60 pt-3">
+                                Absolutely! Go to the "List Your Property" tab and fill out the onboarding form. It will be added immediately to the marketplace directory, and you will receive email updates.
+                            </p>
+                        </details>
+
+                        <details class="group bg-brand-slateLight border border-slate-200/60 rounded-xl p-5 cursor-pointer hover:border-amber-500/30 transition-all duration-300">
+                            <summary class="font-bold text-[15px] text-brand-navy list-none flex justify-between items-center select-none">
+                                <span>Are there safe and dedicated spaces for working professionals?</span>
+                                <span class="transition-all duration-300 transform group-open:rotate-180 text-brand-gold">
+                                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                                </span>
+                            </summary>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed border-t border-slate-200/60 pt-3">
+                                Yes. We host distinct spaces specifically categorized for boys, girls, and unisex co-living. Simply select your preference in the filters.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- PAGE 2: BROWSE LISTINGS (MARKETPLACE) -->
+        <!-- ============================================== -->
+        <section id="page-listings" class="page-view hidden animate-fadeIn">
+            <div class="bg-brand-navy text-white py-12 px-4 border-b border-slate-800">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-extrabold tracking-tight">Explore Live Spaces</h1>
+                    <p class="text-slate-400 mt-1">Filter and secure your perfect accommodation instantly.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 py-10">
+                <!-- Search Filter Bar (Quick Mobile) -->
+                <div class="lg:hidden mb-6">
+                    <button onclick="toggleFilterSidebar()" class="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-brand-navy py-3.5 rounded-xl font-bold text-sm">
+                        <i data-lucide="sliders-horizontal" class="w-4 h-4 text-brand-gold"></i>
+                        Show / Hide Filters
+                    </button>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <!-- Filters Sidebar -->
+                    <aside id="filter-sidebar" class="hidden lg:block w-full lg:w-[320px] bg-white border border-slate-200 rounded-2xl p-6 sticky top-24 shrink-0 shadow-sm">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                            <h3 class="font-bold text-lg text-brand-navy flex items-center gap-2">
+                                <i data-lucide="sliders-horizontal" class="w-5 h-5 text-brand-gold"></i> Filters
+                            </h3>
+                            <button onclick="resetFilters()" class="text-xs font-semibold text-slate-400 hover:text-brand-gold transition">Reset All</button>
+                        </div>
+
+                        <!-- Filter Item: Search Name -->
+                        <div class="mb-5">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Search Locality / Name</label>
+                            <div class="relative">
+                                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+                                <input type="text" id="filter-search" oninput="applyFilters()" placeholder="e.g. Pune, Bandra..." class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                            </div>
+                        </div>
+
+                        <!-- Filter Item: Property Type -->
+                        <div class="mb-5">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Space Category</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button id="cat-btn-all" onclick="setCategoryFilter('all')" class="bg-brand-navy text-white text-xs py-2.5 rounded-lg font-bold transition">All</button>
+                                <button id="cat-btn-pg" onclick="setCategoryFilter('pg')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs py-2.5 rounded-lg font-bold transition">PG Spaces</button>
+                                <button id="cat-btn-re" onclick="setCategoryFilter('realestate')" class="col-span-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs py-2.5 rounded-lg font-bold transition mt-1">Real Estate</button>
+                            </div>
+                        </div>
+
+                        <!-- Filter Item: Price Range -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Max Budget (Monthly)</label>
+                                <span class="text-xs font-bold text-brand-gold" id="budget-label">₹50,000+</span>
+                            </div>
+                            <input type="range" id="filter-budget" min="2000" max="60000" step="1000" value="60000" oninput="updateBudgetLabel(this.value); applyFilters();" class="w-full accent-brand-gold cursor-pointer">
+                        </div>
+
+                        <!-- PG Specific Sharing Type Options -->
+                        <div class="mb-6 border-t border-slate-100 pt-5" id="sharing-filter-group">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Sharing Type (PG Only)</label>
+                            <select id="filter-sharing" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-brand-gold">
+                                <option value="any">Any Capacity</option>
+                                <option value="single">Single Room (Private)</option>
+                                <option value="double">Double Sharing</option>
+                                <option value="triple">Triple Sharing</option>
+                            </select>
+                        </div>
+
+                        <!-- Filter Item: Amenities Checklist -->
+                        <div class="border-t border-slate-100 pt-5">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Key Amenities</label>
+                            <div class="space-y-2 text-sm text-slate-600">
+                                <label class="flex items-center gap-2.5 cursor-pointer">
+                                    <input type="checkbox" value="wifi" onchange="applyFilters()" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4.5 h-4.5 accent-brand-gold">
+                                    <span>High-Speed Wi-Fi</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 cursor-pointer">
+                                    <input type="checkbox" value="meals" onchange="applyFilters()" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4.5 h-4.5 accent-brand-gold">
+                                    <span>Home Cooking/Meals</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 cursor-pointer">
+                                    <input type="checkbox" value="ac" onchange="applyFilters()" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4.5 h-4.5 accent-brand-gold">
+                                    <span>Air Conditioning (AC)</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 cursor-pointer">
+                                    <input type="checkbox" value="parking" onchange="applyFilters()" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4.5 h-4.5 accent-brand-gold">
+                                    <span>Car/Bike Parking</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 cursor-pointer">
+                                    <input type="checkbox" value="gym" onchange="applyFilters()" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4.5 h-4.5 accent-brand-gold">
+                                    <span>Gym Access</span>
+                                </label>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Listings Content Grid -->
+                    <div class="flex-grow w-full">
+                        <div class="flex justify-between items-center mb-6">
+                            <p class="text-slate-500 text-sm font-semibold" id="results-count">Showing 0 properties</p>
+                            <select id="sort-filter" onchange="applyFilters()" class="bg-white border border-slate-200 text-xs font-bold py-2 px-3 rounded-lg text-slate-600 outline-none cursor-pointer">
+                                <option value="default">Default Sort</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                            </select>
+                        </div>
+
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="listings-grid">
+                            <!-- Populated Dynamically by JavaScript -->
+                        </div>
+
+                        <!-- No properties feedback state -->
+                        <div id="no-listings-found" class="hidden text-center py-20 bg-white border border-slate-200 rounded-2xl p-8">
+                            <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mx-auto mb-4">
+                                <i data-lucide="frown" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-navy">No Matches Found</h3>
+                            <p class="text-slate-400 text-sm mt-1">Try resetting some filters or broadening your budget boundaries.</p>
+                            <button onclick="resetFilters()" class="mt-4 bg-brand-gold text-white font-bold px-6 py-2 rounded-lg hover:bg-brand-goldHover transition text-sm">Clear Filters</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- PAGE 3: LIST YOUR PROPERTY (ONBOARDING FORM) -->
+        <!-- ============================================== -->
+        <section id="page-list-property" class="page-view hidden animate-fadeIn">
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <!-- Heading -->
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-brand-navy">Onboard Your Property</h1>
+                    <p class="text-slate-500 mt-2">Post PG hostels or standard family houses. Reach thousands of daily premium searchers with zero middle-man cuts.</p>
+                </div>
+
+                <!-- Multi-Step Onboarding Form Container -->
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-xl p-6 md:p-10 relative overflow-hidden">
+                    
+                    <!-- Top Form Stage indicator -->
+                    <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <span id="step-number" class="w-8 h-8 rounded-full bg-brand-gold text-white font-extrabold flex items-center justify-center text-sm">1</span>
+                            <div>
+                                <h3 id="step-title" class="font-extrabold text-slate-900 text-sm leading-tight">Step 1: Core Details</h3>
+                                <p class="text-slate-400 text-xs">Essential layout variables</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <div class="w-8 h-2 rounded bg-brand-gold" id="step-bar-1"></div>
+                            <div class="w-8 h-2 rounded bg-slate-100" id="step-bar-2"></div>
+                            <div class="w-8 h-2 rounded bg-slate-100" id="step-bar-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Main Listing Onboarding Form -->
+                    <form id="property-form" onsubmit="handleFormSubmission(event)">
+                        
+                        <!-- STEP 1 VIEW: core parameters -->
+                        <div id="form-step-1" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Category *</label>
+                                    <select id="form-category" onchange="adjustFormFields(this.value)" required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm font-semibold text-slate-700 outline-none focus:ring-2 focus:ring-brand-gold">
+                                        <option value="pg">Paying Guest (PG) / Student Co-Living</option>
+                                        <option value="realestate">Residential Real Estate (Rent/Sale)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Listing Title *</label>
+                                    <input type="text" id="form-title" placeholder="e.g. Modern Double Sharing Girls PG" required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Locality City *</label>
+                                    <input type="text" id="form-location" placeholder="e.g. Pune, Maharashtra" required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Monthly Cost / Price (INR) *</label>
+                                    <input type="number" id="form-price" placeholder="e.g. 15000" required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Full Description *</label>
+                                <textarea id="form-description" rows="4" placeholder="Mention everything students, professionals or families would love to know (deposit terms, restrictions, food schedules, nearest transit)." required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2 VIEW: specific parameters & amenities -->
+                        <div id="form-step-2" class="space-y-6 hidden">
+                            <!-- PG Particular Configuration Fields -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-field-pg-sharing">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Occupancy Level</label>
+                                    <select id="form-sharing" class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-brand-gold">
+                                        <option value="single">Single Bed / Private Room</option>
+                                        <option value="double">Double Sharing</option>
+                                        <option value="triple">Triple Sharing</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ideal Tenant Target</label>
+                                    <select id="form-target" class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-brand-gold">
+                                        <option value="girls">Girls Only</option>
+                                        <option value="boys">Boys Only</option>
+                                        <option value="unisex">Co-living / Mixed</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Real Estate Particular Fields -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden" id="form-field-re-specifics">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Property Layout Type</label>
+                                    <select id="form-re-type" class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-brand-gold">
+                                        <option value="Flat">Luxury Apartment (Flat)</option>
+                                        <option value="Villa">Independent Villa / Bungalow</option>
+                                        <option value="Studio">Studio Space</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Listing Aim</label>
+                                    <select id="form-listing-aim" class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-brand-gold">
+                                        <option value="For Rent">Rent Monthly</option>
+                                        <option value="For Sale">Sell Flat / Plot</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Custom Imagery URL Input -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Photo URL (Optional)</label>
+                                <input type="url" id="form-image" placeholder="Leave empty for premium pre-assigned generic placeholder imagery." class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                            </div>
+
+                            <!-- Amenities Checkbox Grid -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Check Included Amenities</label>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    <label class="flex items-center gap-2 border border-slate-200 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-sm">
+                                        <input type="checkbox" id="form-amenity-wifi" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4 h-4 accent-brand-gold">
+                                        <span>High-Speed Wi-Fi</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 border border-slate-200 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-sm">
+                                        <input type="checkbox" id="form-amenity-meals" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4 h-4 accent-brand-gold">
+                                        <span>Home Cooked Meals</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 border border-slate-200 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-sm">
+                                        <input type="checkbox" id="form-amenity-ac" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4 h-4 accent-brand-gold">
+                                        <span>Air Conditioning</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 border border-slate-200 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-sm">
+                                        <input type="checkbox" id="form-amenity-parking" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4 h-4 accent-brand-gold">
+                                        <span>Assigned Parking</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 border border-slate-200 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-sm">
+                                        <input type="checkbox" id="form-amenity-gym" class="rounded text-brand-gold focus:ring-brand-gold border-slate-300 w-4 h-4 accent-brand-gold">
+                                        <span>Fitness Center / Gym</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3 VIEW: owner credentials & submission -->
+                        <div id="form-step-3" class="space-y-6 hidden">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Owner Full Name *</label>
+                                    <input type="text" id="form-owner-name" placeholder="e.g. Ramesh Kumar" required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Direct Phone Number *</label>
+                                    <input type="tel" id="form-owner-phone" placeholder="e.g. +91 9876543210" required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Contact Email *</label>
+                                <input type="email" id="form-owner-email" placeholder="e.g. landholder@example.com" required class="w-full border border-slate-200 rounded-xl px-4 py-3 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                            </div>
+
+                            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+                                <i data-lucide="info" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i>
+                                <p class="text-xs text-amber-800 leading-relaxed">
+                                    By submitting this form, you certify that the parameters given are truthful. False physical details, invalid pricing structures, or unlicensed photos can trigger permanent dashboard account suspensions.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Button Controls Panel -->
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-8 mt-10">
+                            <button type="button" id="prev-btn" onclick="prevStep()" class="hidden border border-slate-200 text-slate-600 font-bold px-6 py-3 rounded-xl hover:bg-slate-50 transition text-sm flex items-center gap-2">
+                                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
+                            </button>
+                            <div class="flex-grow"></div>
+                            <button type="button" id="next-btn" onclick="nextStep()" class="bg-brand-navy text-white font-bold px-8 py-3 rounded-xl hover:bg-slate-800 transition text-sm flex items-center gap-2">
+                                Next Step <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button type="submit" id="submit-btn" class="hidden bg-brand-gold text-white font-bold px-8 py-3 rounded-xl hover:bg-brand-goldHover transition text-sm flex items-center gap-2 shadow-md">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Deploy Listing
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- PAGE 4: CONTACT & ABOUT US PAGE -->
+        <!-- ============================================== -->
+        <section id="page-contact" class="page-view hidden animate-fadeIn">
+            <!-- About Segment -->
+            <div class="bg-brand-navy text-white py-20 px-4 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px]"></div>
+                <div class="max-w-4xl mx-auto text-center relative z-10">
+                    <span class="text-brand-gold text-xs font-extrabold uppercase tracking-widest bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/50">About Dipesh Property Solutions</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-4 mb-6 leading-tight">Empowering Urban Dwellers</h1>
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
+                        Welcome to Dipesh Property Solutions, your trusted partner in real estate for over 23 years. With a legacy of excellence, we take pride in serving over 5000 satisfied clients and counting. At Dipesh Property Solutions, we go beyond transactions – we build relationships and create homes. Our commitment to integrity, transparency, and client satisfaction has been the cornerstone of our success. Join the Dipesh family and let us guide you on your journey to finding the perfect property solution tailored just for you. Your dream home awaits – with Dipesh, it’s not just a property; it’s a promise.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 py-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Contact Form Box -->
+                    <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
+                        <h2 class="text-2xl font-extrabold text-brand-navy mb-2">Drop Us a Message</h2>
+                        <p class="text-slate-500 text-sm mb-6">Our support personnel are live 24 hours a day to solve booking hiccups, verify user profiles, or host onboarding questions.</p>
+                        
+                        <form id="contact-form" onsubmit="handleContactSubmission(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Full Name</label>
+                                    <input type="text" id="contact-name" required class="w-full border border-slate-200 rounded-lg px-4 py-2.5 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Email Address</label>
+                                    <input type="email" id="contact-email" required class="w-full border border-slate-200 rounded-lg px-4 py-2.5 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Topic/Subject</label>
+                                <select id="contact-subject" class="w-full border border-slate-200 rounded-lg px-4 py-2.5 bg-slate-50 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-brand-gold">
+                                    <option>PG booking reservation enquiry</option>
+                                    <option>Home purchase property verification</option>
+                                    <option>Partner landholder registration support</option>
+                                    <option>Other general queries</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Your Message</label>
+                                <textarea id="contact-message" rows="5" required class="w-full border border-slate-200 rounded-lg px-4 py-2.5 bg-slate-50 text-sm outline-none focus:ring-2 focus:ring-brand-gold text-slate-800" placeholder="Let us know how we can support your search..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-navy text-white font-bold py-3 rounded-lg hover:bg-slate-800 transition duration-200 shadow-md">Send Ticket Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Company Info Details -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-navy mb-4">Dipesh Property Solutions Headquarters</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                                Drop by or connect via call / email. We are available to schedule custom site tours.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3 text-sm text-slate-600">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-brand-gold shrink-0">
+                                        <i data-lucide="mail" class="w-4 h-4"></i>
+                                    </div>
+                                    <p>dipesht2211@gmail.com</p>
+                                </div>
+                                <div class="flex items-start gap-3 text-sm text-slate-600">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-brand-gold shrink-0">
+                                        <i data-lucide="phone" class="w-4 h-4"></i>
+                                    </div>
+                                    <p>+91 98694 86859</p>
+                                </div>
+                                <div class="flex items-start gap-3 text-sm text-slate-600">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-brand-gold shrink-0">
+                                        <i data-lucide="message-square" class="w-4 h-4"></i>
+                                    </div>
+                                    <a href="https://wa.me/919869486859?text=Hello%20Dipesh%20Property%20Solutions,%20I%20visited%20your%20website%20and%20wanted%20to%20connect." target="_blank" class="text-brand-gold font-extrabold hover:underline">
+                                        Chat Directly on WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ inside Support context too -->
+                        <div class="border-t border-slate-200 pt-8">
+                            <h3 class="text-lg font-bold text-brand-navy mb-4">Support Guidelines</h3>
+                            <div class="bg-amber-50/50 p-4 border border-amber-100 rounded-xl">
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Our support channels are monitored continuously. For immediate property visits or price negotiations, please use our 24/7 direct WhatsApp hotline or call our official line directly.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="bg-brand-navy text-slate-300 border-t border-slate-800 pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Branding column -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <img src="https://lh3.googleusercontent.com/d/1JjiTJaX5ZOPtGVQqnyyDkTp_h9gHJ4-2=w800-h800" 
+                             alt="Dipesh Property Solutions Logo" 
+                             class="w-8 h-8 object-contain rounded" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=100&q=80';">
+                        <span class="text-xl font-bold tracking-tight text-white">Dipesh<span class="text-brand-gold"> Property Solutions</span></span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Redefining urban flat-sharing and premium leasing contracts across key developing districts. Verified apartments, zero broker issues.
+                    </p>
+                </div>
+
+                <!-- Fast Routes -->
+                <div>
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4">Fast Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#home" onclick="navigateTo('home')" class="hover:text-brand-gold transition">Homepage</a></li>
+                        <li><a href="#listings" onclick="navigateTo('listings')" class="hover:text-brand-gold transition">Our Live Marketplace</a></li>
+                        <li><a href="#list-property" onclick="navigateTo('list-property')" class="hover:text-brand-gold transition">List Your Properties</a></li>
+                        <li><a href="#contact" onclick="navigateTo('contact')" class="hover:text-brand-gold transition">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services Split -->
+                <div>
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4">Our Models</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#listings" onclick="filterAndBrowse('pg')" class="hover:text-brand-gold transition">Single Occupancy PG</a></li>
+                        <li><a href="#listings" onclick="filterAndBrowse('pg')" class="hover:text-brand-gold transition">Co-Living Sharing Pods</a></li>
+                        <li><a href="#listings" onclick="filterAndBrowse('realestate')" class="hover:text-brand-gold transition">Luxury Apartment Sales</a></li>
+                        <li><a href="#listings" onclick="filterAndBrowse('realestate')" class="hover:text-brand-gold transition">Gated Family Estates</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact details -->
+                <div>
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4">Direct Contact</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li>Email: <span class="text-white font-semibold">dipesht2211@gmail.com</span></li>
+                        <li>Phone: <span class="text-white font-semibold">+91 98694 86859</span></li>
+                        <li class="pt-2">
+                            <a href="https://wa.me/919869486859?text=Hello%20Dipesh%20Property%20Solutions" target="_blank" class="inline-flex items-center gap-1.5 bg-brand-whatsapp hover:bg-brand-whatsappHover text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.83.001-2.624-1.013-5.091-2.855-6.937C16.638 1.993 14.168 1.05 11.56 1.05c-5.442 0-9.867 4.414-9.87 9.831-.001 1.77.472 3.5 1.371 5.013L2.015 21.8l6.035-1.585L8.05 20.21zm7.404-5.35c-.29-.146-1.713-.846-1.978-.942-.266-.097-.459-.146-.653.146-.193.29-.747.942-.916 1.136-.168.193-.337.217-.626.072-1.353-.679-2.24-1.185-3.136-2.721-.237-.406.237-.377.678-1.258.072-.146.037-.272-.018-.38-.056-.109-.459-1.107-.629-1.517-.165-.398-.332-.344-.459-.35-.12-.005-.257-.006-.395-.006-.137 0-.361.052-.55.257-.19.206-.723.707-.723 1.724s.74 2.005.843 2.14c.103.137 1.456 2.222 3.527 3.116 1.642.709 2.246.772 3.056.653.515-.076 1.713-.699 1.954-1.375.242-.676.242-1.257.17-1.376-.073-.12-.266-.194-.556-.34zm0 0"/></svg>
+                                WhatsApp Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Line -->
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2026 Dipesh Property Solutions. All rights reserved.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-gold">Terms of Use</a>
+                    <a href="#" class="hover:text-brand-gold">Privacy Regulations</a>
+                    <a href="#" class="hover:text-brand-gold">Licensing Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INQUIRY MODAL POPUP -->
+    <div id="inquiry-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm animate-fadeIn">
+        <div class="bg-white rounded-2xl w-full max-w-md border border-slate-100 overflow-hidden relative shadow-2xl">
+            <button onclick="closeInquiryModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="p-6">
+                <div class="flex items-center gap-2.5 mb-4">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-gold animate-ping"></span>
+                    <span class="text-xs font-bold text-brand-gold uppercase tracking-widest">Connect with Dipesh Property Solutions</span>
+                </div>
+                <h3 id="modal-property-title" class="font-extrabold text-xl text-brand-navy mb-1">Modern Luxury PG</h3>
+                <p id="modal-property-price" class="text-sm font-bold text-slate-500 mb-6">₹12,000 / Month</p>
+
+                <form id="inquiry-form" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Your Full Name *</label>
+                        <input type="text" id="modal-user-name" required class="w-full border border-slate-200 rounded-lg px-3 py-2 bg-slate-50 text-sm focus:ring-2 focus:ring-brand-gold outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Contact Phone Number *</label>
+                        <input type="tel" id="modal-user-phone" required class="w-full border border-slate-200 rounded-lg px-3 py-2 bg-slate-50 text-sm focus:ring-2 focus:ring-brand-gold outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Preferred Move-in Date *</label>
+                        <input type="date" required id="modal-move-date" class="w-full border border-slate-200 rounded-lg px-3 py-2 bg-slate-50 text-sm focus:ring-2 focus:ring-brand-gold outline-none text-slate-600">
+                    </div>
+                    
+                    <div class="pt-2 space-y-2">
+                        <button type="submit" class="w-full bg-brand-navy hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition shadow-md">
+                            Submit Inquiry Form
+                        </button>
+                        
+                        <!-- Dynamic WhatsApp Direct Button inside Modal -->
+                        <button type="button" onclick="sendInquiryDirectWhatsApp()" class="w-full bg-brand-whatsapp hover:bg-brand-whatsappHover text-white font-bold py-3 rounded-lg transition shadow-md flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.83.001-2.624-1.013-5.091-2.855-6.937C16.638 1.993 14.168 1.05 11.56 1.05c-5.442 0-9.867 4.414-9.87 9.831-.001 1.77.472 3.5 1.371 5.013L2.015 21.8l6.035-1.585L8.05 20.21zm7.404-5.35c-.29-.146-1.713-.846-1.978-.942-.266-.097-.459-.146-.653.146-.193.29-.747.942-.916 1.136-.168.193-.337.217-.626.072-1.353-.679-2.24-1.185-3.136-2.721-.237-.406.237-.377.678-1.258.072-.146.037-.272-.018-.38-.056-.109-.459-1.107-.629-1.517-.165-.398-.332-.344-.459-.35-.12-.005-.257-.006-.395-.006-.137 0-.361.052-.55.257-.19.206-.723.707-.723 1.724s.74 2.005.843 2.14c.103.137 1.456 2.222 3.527 3.116 1.642.709 2.246.772 3.056.653.515-.076 1.713-.699 1.954-1.375.242-.676.242-1.257.17-1.376-.073-.12-.266-.194-.556-.34zm0 0"/></svg>
+                            Instant Inquiry via WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC TOAST ALERT -->
+    <div id="toast-alert" class="fixed bottom-6 right-24 z-[120] bg-brand-slateDark text-white px-5 py-4 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700/50 transform translate-y-24 opacity-0 transition-all duration-300">
+        <div class="w-6 h-6 bg-brand-accentGreen rounded-full flex items-center justify-center text-white shrink-0">
+            <i data-lucide="check" class="w-4 h-4"></i>
+        </div>
+        <div>
+            <p id="toast-message" class="text-sm font-bold">Successfully Registered!</p>
+        </div>
+    </div>
+
+    <!-- CLIENT SIDE DATABASE & INTERACTION LOGIC -->
+    <script>
+        const SUPABASE_URL = "";       // Add Supabase details when scaling to cloud DB
+        const SUPABASE_ANON_KEY = "";  
+
+        let supabaseClient = null;
+        let useCloudDb = false;
+
+        if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+            try {
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                useCloudDb = true;
+            } catch (e) {
+                console.error("Supabase fallback activated.", e);
+            }
+        }
+
+        // Pre-loaded realistic Mumbai / Pune Real Estate and PG database
+        const initialMockDatabase = [
+            {
+                id: 1,
+                title: "Tranquil Meadows Co-living Hub",
+                type: "pg",
+                price: 8500,
+                location: "Viman Nagar, Pune",
+                sharing: "double",
+                target: "unisex",
+                featured: true,
+                rating: "4.8",
+                image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80",
+                amenities: ["wifi", "meals", "ac"],
+                description: "Premium fully-furnished spaces designed specifically for student studying structures. Includes daily organic balanced meals and laundry."
+            },
+            {
+                id: 2,
+                title: "Apex Horizon Luxury Penthouse",
+                type: "realestate",
+                reType: "Flat",
+                price: 48000,
+                location: "Bandra West, Mumbai",
+                featured: true,
+                rating: "4.9",
+                aim: "For Rent",
+                image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80",
+                amenities: ["wifi", "ac", "parking", "gym"],
+                description: "Overlooking the beautiful coastline. 3BHK luxurious semi-furnished layout with direct high-end building amenities and 24/7 lobby watch desk."
+            },
+            {
+                id: 3,
+                title: "Stanza Premium Executive Pods",
+                type: "pg",
+                price: 14000,
+                location: "HSR Layout, Bangalore",
+                sharing: "single",
+                target: "boys",
+                featured: true,
+                rating: "4.7",
+                image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80",
+                amenities: ["wifi", "ac", "gym"],
+                description: "Perfect isolated single occupancy setups for young software professionals. Quiet hours enforced, gigabit fiber network installed."
+            },
+            {
+                id: 4,
+                title: "The Magnolia Premium Villa",
+                type: "realestate",
+                reType: "Villa",
+                aim: "For Sale",
+                price: 55000,
+                location: "Koregaon Park, Pune",
+                featured: false,
+                rating: "5.0",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+                amenities: ["parking", "gym", "wifi"],
+                description: "Exquisite architectural masterpiece. Gated perimeter, pristine private lawns, modular smart home integration."
+            },
+            {
+                id: 5,
+                title: "Ivy Luxury Girls PG Hostels",
+                type: "pg",
+                price: 6500,
+                location: "Salt Lake, Kolkata",
+                sharing: "triple",
+                target: "girls",
+                featured: false,
+                rating: "4.5",
+                image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80",
+                amenities: ["wifi", "meals"],
+                description: "Highly secure compound for university scholars. Equipped with bio-lock entry systems, in-house cooks, and cozy study zones."
+            },
+            {
+                id: 6,
+                title: "Urban Minimalist Studio Apartment",
+                type: "realestate",
+                reType: "Studio",
+                aim: "For Rent",
+                price: 18000,
+                location: "Sector 62, Noida",
+                featured: false,
+                rating: "4.6",
+                image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80",
+                amenities: ["wifi", "ac", "parking"],
+                description: "Sleek smart interior layout optimized for digital nomads. Convenient connection routes to business tech parks."
+            }
+        ];
+
+        // Active State Variables
+        let propertyDatabase = [];
+        let activeCategoryFilter = "all"; 
+        let activeFormStep = 1;
+
+        // On Load initialization
+        window.addEventListener('DOMContentLoaded', async () => {
+            updateDbStatusUi();
+            await syncDatabase();
+
+            lucide.createIcons();
+            renderFeaturedListings();
+            applyFilters();
+
+            if(window.location.hash) {
+                const targetHash = window.location.hash.replace('#', '');
+                navigateTo(targetHash);
+            }
+        });
+
+        // ==============================================
+        // DATABASE STORAGE MANAGEMENT
+        // ==============================================
+        async function syncDatabase() {
+            if (useCloudDb) {
+                try {
+                    const { data, error } = await supabaseClient.from('properties').select('*').order('created_at', { ascending: false });
+                    if (error) throw error;
+                    if (data && data.length > 0) {
+                        propertyDatabase = data;
+                    } else {
+                        propertyDatabase = initialMockDatabase;
+                    }
+                } catch (e) {
+                    console.error("Failed to query database. Using sandbox instead.", e);
+                    loadLocalDataFallback();
+                }
+            } else {
+                loadLocalDataFallback();
+            }
+        }
+
+        function loadLocalDataFallback() {
+            const savedData = localStorage.getItem('dipesh_living_local_db');
+            if (savedData) {
+                propertyDatabase = JSON.parse(savedData);
+            } else {
+                propertyDatabase = initialMockDatabase;
+                localStorage.setItem('dipesh_living_local_db', JSON.stringify(propertyDatabase));
+            }
+        }
+
+        function updateDbStatusUi() {
+            const badge = document.getElementById('db-status-badge');
+            const badgeMobile = document.getElementById('db-status-badge-mobile');
+
+            if (useCloudDb) {
+                badge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-50 text-brand-accentGreen border border-green-200 cursor-pointer";
+                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-brand-accentGreen animate-pulse"></span><span>Supabase Active</span>`;
+                badgeMobile.className = "w-2.5 h-2.5 rounded-full bg-brand-accentGreen";
+            } else {
+                badge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-brand-gold border border-amber-200 cursor-pointer";
+                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span><span>Local Sandbox</span>`;
+                badgeMobile.className = "w-2.5 h-2.5 rounded-full bg-brand-gold";
+            }
+        }
+
+        function alertDbStatus() {
+            if (useCloudDb) {
+                alert(`Supabase Cloud Database successfully synced and active!`);
+            } else {
+                alert(`Welcome to the Dipesh Property Solutions Sandbox!\n\nCurrently, your database is in Local Storage Sandbox mode. Newly submitted listings and inquiries are saved directly inside your local browser storage.`);
+            }
+        }
+
+        // ==============================================
+        // PAGE ROUTING & NAVIGATION
+        // ==============================================
+        function navigateTo(pageId) {
+            document.getElementById('mobile-menu').classList.add('hidden');
+            document.getElementById('menu-icon-open').classList.remove('hidden');
+            document.getElementById('menu-icon-close').classList.add('hidden');
+
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(p => p.classList.add('hidden'));
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.id === `nav-${pageId}`) {
+                    link.classList.add('active-nav');
+                }
+            });
+
+            history.pushState(null, null, `#${pageId}`);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-icon-open');
+            const closeIcon = document.getElementById('menu-icon-close');
+
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                openIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // ==============================================
+        // TOAST NOTIFICATIONS
+        // ==============================================
+        function triggerToast(message) {
+            const toast = document.getElementById('toast-alert');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 4000);
+        }
+
+        // ==============================================
+        // EMAIL INTEGRATION (DIRECT ROUTE TO DIPESH)
+        // ==============================================
+        function sendEmailToDipesh(subject, messageBody) {
+            const recipient = "dipesht2211@gmail.com";
+            const formattedBody = `Dear Team,\n\nA new update/lead has been captured on the Dipesh Property Solutions platform.\n\n${messageBody}\n\nRegards,\nPlatform Automation Team`;
+            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedBody)}`;
+            
+            // Triggers standard native email client of the user (e.g. Gmail / Outlook / Mail app)
+            window.open(mailtoLink, '_blank');
+        }
+
+        // ==============================================
+        // HOME PAGE DUAL SEARCH LOGIC
+        // ==============================================
+        let currentHomeSearchType = "pg";
+
+        function switchSearchTab(type) {
+            currentHomeSearchType = type;
+            const pgBtn = document.getElementById('search-tab-pg');
+            const reBtn = document.getElementById('search-tab-re');
+            const selectDropdown = document.getElementById('home-search-filter');
+
+            if (type === 'pg') {
+                pgBtn.className = "px-5 py-2.5 font-bold text-sm tracking-wide rounded-lg bg-amber-50 text-brand-gold transition duration-200 flex items-center gap-2";
+                reBtn.className = "px-5 py-2.5 font-bold text-sm tracking-wide rounded-lg text-slate-400 hover:text-slate-600 transition duration-200 flex items-center gap-2";
+                selectDropdown.innerHTML = `
+                    <option value="any">Any Room/Sharing Type</option>
+                    <option value="single">Single Occupancy</option>
+                    <option value="double">Double Sharing</option>
+                    <option value="triple">Triple Sharing</option>
+                `;
+            } else {
+                reBtn.className = "px-5 py-2.5 font-bold text-sm tracking-wide rounded-lg bg-amber-50 text-brand-gold transition duration-200 flex items-center gap-2";
+                pgBtn.className = "px-5 py-2.5 font-bold text-sm tracking-wide rounded-lg text-slate-400 hover:text-slate-600 transition duration-200 flex items-center gap-2";
+                selectDropdown.innerHTML = `
+                    <option value="any">Buy or Rent Options</option>
+                    <option value="rent">To Rent Monthly</option>
+                    <option value="sale">For Immediate Sale</option>
+                `;
+            }
+        }
+
+        function triggerHomeSearch() {
+            const locationInput = document.getElementById('home-search-location').value;
+            const specFilter = document.getElementById('home-search-filter').value;
+
+            navigateTo('listings');
+
+            document.getElementById('filter-search').value = locationInput;
+            setCategoryFilter(currentHomeSearchType);
+
+            if (currentHomeSearchType === 'pg' && specFilter !== 'any') {
+                document.getElementById('filter-sharing').value = specFilter;
+            }
+
+            applyFilters();
+        }
+
+        function filterAndBrowse(type) {
+            navigateTo('listings');
+            setCategoryFilter(type);
+            applyFilters();
+        }
+
+        // ==============================================
+        // MARKETPLACE BROWSE LOGIC (FILTERING & SORTING)
+        // ==============================================
+        function toggleFilterSidebar() {
+            const sidebar = document.getElementById('filter-sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+        function setCategoryFilter(category) {
+            activeCategoryFilter = category;
+            
+            const btnAll = document.getElementById('cat-btn-all');
+            const btnPg = document.getElementById('cat-btn-pg');
+            const btnRe = document.getElementById('cat-btn-re');
+            const sharingBox = document.getElementById('sharing-filter-group');
+
+            btnAll.className = "bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs py-2.5 rounded-lg font-bold transition";
+            btnPg.className = "bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs py-2.5 rounded-lg font-bold transition";
+            btnRe.className = "col-span-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs py-2.5 rounded-lg font-bold transition mt-1";
+
+            if (category === 'all') {
+                btnAll.className = "bg-brand-navy text-white text-xs py-2.5 rounded-lg font-bold transition";
+                sharingBox.classList.remove('hidden');
+            } else if (category === 'pg') {
+                btnPg.className = "bg-brand-navy text-white text-xs py-2.5 rounded-lg font-bold transition";
+                sharingBox.classList.remove('hidden');
+            } else if (category === 'realestate') {
+                btnRe.className = "col-span-2 bg-brand-navy text-white text-xs py-2.5 rounded-lg font-bold transition mt-1";
+                sharingBox.classList.add('hidden');
+            }
+
+            applyFilters();
+        }
+
+        function updateBudgetLabel(val) {
+            const label = document.getElementById('budget-label');
+            if (parseInt(val) >= 60000) {
+                label.innerText = "₹60,000+";
+            } else {
+                label.innerText = "₹" + parseInt(val).toLocaleString('en-IN');
+            }
+        }
+
+        function resetFilters() {
+            document.getElementById('filter-search').value = "";
+            document.getElementById('filter-budget').value = 60000;
+            document.getElementById('filter-sharing').value = "any";
+            updateBudgetLabel(60000);
+            
+            const checkBoxes = document.querySelectorAll('#filter-sidebar input[type="checkbox"]');
+            checkBoxes.forEach(chk => chk.checked = false);
+
+            setCategoryFilter('all');
+        }
+
+        function applyFilters() {
+            const searchVal = document.getElementById('filter-search').value.toLowerCase();
+            const budgetVal = parseInt(document.getElementById('filter-budget').value);
+            const sharingVal = document.getElementById('filter-sharing').value;
+            const sortVal = document.getElementById('sort-filter').value;
+
+            const activeCheckedBoxes = document.querySelectorAll('#filter-sidebar input[type="checkbox"]:checked');
+            const requiredAmenities = Array.from(activeCheckedBoxes).map(chk => chk.value);
+
+            let filteredList = propertyDatabase.filter(item => {
+                if (activeCategoryFilter !== 'all' && item.type !== activeCategoryFilter) {
+                    return false;
+                }
+
+                if (searchVal && !item.title.toLowerCase().includes(searchVal) && !item.location.toLowerCase().includes(searchVal)) {
+                    return false;
+                }
+
+                if (budgetVal < 60000 && item.price > budgetVal) {
+                    return false;
+                }
+
+                if (item.type === 'pg' && sharingVal !== 'any' && item.sharing !== sharingVal) {
+                    return false;
+                }
+
+                if (requiredAmenities.length > 0) {
+                    const hasAllAmenities = requiredAmenities.every(amenity => item.amenities && item.amenities.includes(amenity));
+                    if (!hasAllAmenities) return false;
+                }
+
+                return true;
+            });
+
+            if (sortVal === 'price-low') {
+                filteredList.sort((a, b) => a.price - b.price);
+            } else if (sortVal === 'price-high') {
+                filteredList.sort((a, b) => b.price - a.price);
+            }
+
+            renderListings(filteredList);
+        }
+
+        function renderListings(properties) {
+            const grid = document.getElementById('listings-grid');
+            const countLabel = document.getElementById('results-count');
+            const noMatchesBox = document.getElementById('no-listings-found');
+
+            grid.innerHTML = "";
+            countLabel.innerText = `Showing ${properties.length} verified listings`;
+
+            if (properties.length === 0) {
+                noMatchesBox.classList.remove('hidden');
+                return;
+            } else {
+                noMatchesBox.classList.add('hidden');
+            }
+
+            properties.forEach(prop => {
+                const badgeColor = prop.type === 'pg' ? 'bg-amber-50 text-brand-gold border-amber-200' : 'bg-slate-100 text-brand-navy border-slate-200';
+                const typeLabel = prop.type === 'pg' ? `${prop.sharing.toUpperCase()} SHARING PG` : `${prop.aim || 'FOR RENT'}`;
+                
+                let amenitiesHTML = "";
+                if (prop.amenities && Array.isArray(prop.amenities)) {
+                    prop.amenities.slice(0,3).forEach(am => {
+                        const iconName = am === 'wifi' ? 'wifi' : am === 'meals' ? 'utensils' : am === 'ac' ? 'snowflake' : am === 'parking' ? 'car' : 'dumbbell';
+                        amenitiesHTML += `
+                            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded-md border border-slate-200/50">
+                                <i data-lucide="${iconName}" class="w-3 h-3 text-slate-400"></i> ${am.toUpperCase()}
+                            </span>
+                        `;
+                    });
+                }
+
+                grid.innerHTML += `
+                    <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+                        <div class="relative overflow-hidden aspect-[4/3] max-h-56">
+                            <img src="${prop.image}" alt="${prop.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 border ${badgeColor} text-[10px] font-extrabold px-3 py-1.5 rounded-full tracking-wider shadow-sm backdrop-blur-sm bg-white/95">
+                                ${typeLabel}
+                            </span>
+                            <span class="absolute bottom-4 right-4 bg-brand-navy/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1">
+                                <i data-lucide="star" class="w-3.5 h-3.5 text-brand-gold fill-brand-gold"></i> ${prop.rating}
+                            </span>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-extrabold text-brand-navy leading-tight hover:text-brand-gold transition cursor-pointer mb-2" onclick="openInquiry('${prop.title.replace(/'/g, "\\'")}', ${prop.price})">
+                                    ${prop.title}
+                                </h3>
+                                <p class="text-xs text-slate-400 font-semibold flex items-center gap-1.5 mb-3">
+                                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i> ${prop.location}
+                                </p>
+                                <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">${prop.description}</p>
+                            </div>
+
+                            <div class="border-t border-slate-100 pt-4 mt-auto">
+                                <div class="flex items-center gap-2 mb-4">
+                                    ${amenitiesHTML}
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Starting Price</p>
+                                        <p class="text-lg font-extrabold text-brand-navy">₹${prop.price.toLocaleString('en-IN')}<span class="text-xs font-medium text-slate-400">/mo</span></p>
+                                    </div>
+                                    <button onclick="openInquiry('${prop.title.replace(/'/g, "\\'")}', ${prop.price})" class="bg-brand-navy hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition shadow-sm flex items-center gap-1.5">
+                                        Check Inquiries <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        function renderFeaturedListings() {
+            const container = document.getElementById('featured-listings-container');
+            container.innerHTML = "";
+
+            const featured = propertyDatabase.filter(item => item.featured).slice(0, 3);
+            
+            featured.forEach(prop => {
+                const typeLabel = prop.type === 'pg' ? `${prop.sharing.toUpperCase()} PG Occupancy` : `${prop.aim || 'FOR RENT'}`;
+                
+                container.innerHTML += `
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition flex flex-col group">
+                        <div class="relative overflow-hidden aspect-[4/3]">
+                            <img src="${prop.image}" alt="${prop.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 bg-white/95 border border-slate-200/50 text-[10px] font-extrabold px-3 py-1.5 rounded-full tracking-wider shadow-sm text-brand-navy">
+                                ${typeLabel}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-extrabold text-brand-navy text-lg leading-snug group-hover:text-brand-gold transition cursor-pointer" onclick="openInquiry('${prop.title.replace(/'/g, "\\'")}', ${prop.price})">${prop.title}</h3>
+                                <span class="bg-amber-50 text-brand-gold text-xs font-bold px-2 py-1 rounded flex items-center gap-0.5 shrink-0">
+                                    <i data-lucide="star" class="w-3 fill-brand-gold"></i> ${prop.rating}
+                                </span>
+                            </div>
+                            <p class="text-xs text-slate-400 font-semibold flex items-center gap-1.5 mb-3">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i> ${prop.location}
+                            </p>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2 mb-4">${prop.description}</p>
+                            
+                            <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                                <p class="text-lg font-extrabold text-brand-navy">₹${prop.price.toLocaleString('en-IN')}<span class="text-xs font-medium text-slate-400">/mo</span></p>
+                                <button onclick="openInquiry('${prop.title.replace(/'/g, "\\'")}', ${prop.price})" class="text-brand-gold hover:text-brand-navy font-bold text-sm flex items-center gap-1 transition">
+                                    Inquire Now <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        // ==============================================
+        // ONBOARDING MULTI-STEP FORM LOGIC
+        // ==============================================
+        function adjustFormFields(category) {
+            const pgSharing = document.getElementById('form-field-pg-sharing');
+            const reSpecifics = document.getElementById('form-field-re-specifics');
+
+            if (category === 'pg') {
+                pgSharing.classList.remove('hidden');
+                reSpecifics.classList.add('hidden');
+            } else {
+                pgSharing.classList.add('hidden');
+                reSpecifics.classList.remove('hidden');
+            }
+        }
+
+        function updateFormStepIndicator() {
+            const stepNum = document.getElementById('step-number');
+            const stepTitle = document.getElementById('step-title');
+            
+            const bar1 = document.getElementById('step-bar-1');
+            const bar2 = document.getElementById('step-bar-2');
+            const bar3 = document.getElementById('step-bar-3');
+
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+
+            bar1.className = "w-8 h-2 rounded bg-slate-100";
+            bar2.className = "w-8 h-2 rounded bg-slate-100";
+            bar3.className = "w-8 h-2 rounded bg-slate-100";
+
+            stepNum.innerText = activeFormStep;
+
+            if (activeFormStep === 1) {
+                stepTitle.innerText = "Step 1: Core Details";
+                bar1.className = "w-8 h-2 rounded bg-brand-gold";
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            } else if (activeFormStep === 2) {
+                stepTitle.innerText = "Step 2: Amenities Configuration";
+                bar1.className = "w-8 h-2 rounded bg-brand-gold";
+                bar2.className = "w-8 h-2 rounded bg-brand-gold";
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            } else if (activeFormStep === 3) {
+                stepTitle.innerText = "Step 3: Verification & Ownership";
+                bar1.className = "w-8 h-2 rounded bg-brand-gold";
+                bar2.className = "w-8 h-2 rounded bg-brand-gold";
+                bar3.className = "w-8 h-2 rounded bg-brand-gold";
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            }
+        }
+
+        function nextStep() {
+            if (activeFormStep === 1) {
+                const title = document.getElementById('form-title').value;
+                const loc = document.getElementById('form-location').value;
+                const price = document.getElementById('form-price').value;
+                const desc = document.getElementById('form-description').value;
+
+                if (!title || !loc || !price || !desc) {
+                    triggerToast("Please complete all fields prior to moving.");
+                    return;
+                }
+            }
+
+            document.getElementById(`form-step-${activeFormStep}`).classList.add('hidden');
+            activeFormStep++;
+            document.getElementById(`form-step-${activeFormStep}`).classList.remove('hidden');
+            updateFormStepIndicator();
+        }
+
+        function prevStep() {
+            document.getElementById(`form-step-${activeFormStep}`).classList.add('hidden');
+            activeFormStep--;
+            document.getElementById(`form-step-${activeFormStep}`).classList.remove('hidden');
+            updateFormStepIndicator();
+        }
+
+        async function handleFormSubmission(event) {
+            event.preventDefault();
+
+            const category = document.getElementById('form-category').value;
+            const title = document.getElementById('form-title').value;
+            const location = document.getElementById('form-location').value;
+            const price = parseInt(document.getElementById('form-price').value);
+            const description = document.getElementById('form-description').value;
+            
+            const amenities = [];
+            if (document.getElementById('form-amenity-wifi').checked) amenities.push('wifi');
+            if (document.getElementById('form-amenity-meals').checked) amenities.push('meals');
+            if (document.getElementById('form-amenity-ac').checked) amenities.push('ac');
+            if (document.getElementById('form-amenity-parking').checked) amenities.push('parking');
+            if (document.getElementById('form-amenity-gym').checked) amenities.push('gym');
+
+            let imgInput = document.getElementById('form-image').value;
+            if (!imgInput) {
+                imgInput = category === 'pg' 
+                    ? "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80" 
+                    : "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80";
+            }
+
+            const ownerName = document.getElementById('form-owner-name').value;
+            const ownerPhone = document.getElementById('form-owner-phone').value;
+            const ownerEmail = document.getElementById('form-owner-email').value;
+
+            const newProperty = {
+                title: title,
+                type: category,
+                price: price,
+                location: location,
+                featured: false,
+                rating: "NEW",
+                image: imgInput,
+                amenities: amenities,
+                description: description,
+                owner_name: ownerName,
+                owner_phone: ownerPhone,
+                owner_email: ownerEmail,
+                sharing: category === 'pg' ? document.getElementById('form-sharing').value : null,
+                target: category === 'pg' ? document.getElementById('form-target').value : null,
+                reType: category === 'realestate' ? document.getElementById('form-re-type').value : null,
+                aim: category === 'realestate' ? document.getElementById('form-listing-aim').value : null
+            };
+
+            // Prepare formatted email body
+            const emailBody = `
+=== NEW PROPERTY LISTING SUBMISSION ===
+Category: ${category.toUpperCase()}
+Title: ${title}
+Location: ${location}
+Price: ₹${price.toLocaleString('en-IN')}/mo
+Description: ${description}
+Amenities: ${amenities.join(', ')}
+
+--- Owner Details ---
+Name: ${ownerName}
+Phone: ${ownerPhone}
+Email: ${ownerEmail}
+            `;
+
+            if (useCloudDb) {
+                try {
+                    const { error } = await supabaseClient.from('properties').insert([newProperty]);
+                    if (error) throw error;
+                    triggerToast("Listed live on cloud!");
+                } catch (e) {
+                    console.error("Cloud insertion failed.", e);
+                    saveToLocalStorage(newProperty);
+                }
+            } else {
+                saveToLocalStorage(newProperty);
+            }
+
+            // Sync, apply filters & render highlights
+            await syncDatabase();
+            applyFilters();
+            renderFeaturedListings();
+
+            // Fire out email notification directly to Dipesh
+            sendEmailToDipesh(`New Property Listing: ${title}`, emailBody);
+
+            document.getElementById('property-form').reset();
+            document.getElementById(`form-step-${activeFormStep}`).classList.add('hidden');
+            activeFormStep = 1;
+            document.getElementById(`form-step-1`).classList.remove('hidden');
+            updateFormStepIndicator();
+
+            navigateTo('listings');
+        }
+
+        function saveToLocalStorage(newProperty) {
+            newProperty.id = propertyDatabase.length + 1;
+            propertyDatabase.unshift(newProperty);
+            localStorage.setItem('dipesh_living_local_db', JSON.stringify(propertyDatabase));
+            triggerToast("Property added to Sandbox Database!");
+        }
+
+        // ==============================================
+        // INQUIRY MODAL SYSTEM
+        // ==============================================
+        function openInquiry(title, price) {
+            document.getElementById('modal-property-title').innerText = title;
+            document.getElementById('modal-property-price').innerText = "₹" + price.toLocaleString('en-IN') + " / Month";
+            
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('modal-move-date').value = tomorrow.toISOString().split('T')[0];
+
+            document.getElementById('inquiry-modal').classList.remove('hidden');
+        }
+
+        function closeInquiryModal() {
+            document.getElementById('inquiry-modal').classList.add('hidden');
+        }
+
+        // Action when customer hits the Form submit
+        async function handleInquirySubmit(event) {
+            event.preventDefault();
+            
+            const propTitle = document.getElementById('modal-property-title').innerText;
+            const userName = document.getElementById('modal-user-name').value;
+            const userPhone = document.getElementById('modal-user-phone').value;
+            const moveInDate = document.getElementById('modal-move-date').value;
+
+            const inquiryData = {
+                property_title: propTitle,
+                client_name: userName,
+                client_phone: userPhone,
+                preferred_move_in_date: moveInDate
+            };
+
+            const emailBody = `
+=== NEW BOOKING/PROPERTY INQUIRY ===
+Property Target: ${propTitle}
+Interested Client: ${userName}
+Client Phone Number: ${userPhone}
+Preferred Move-in Date: ${moveInDate}
+            `;
+
+            if (useCloudDb) {
+                try {
+                    const { error } = await supabaseClient.from('inquiries').insert([inquiryData]);
+                    if (error) throw error;
+                    triggerToast("Inquiry recorded successfully!");
+                } catch (e) {
+                    console.error("Cloud inquiry failed.", e);
+                }
+            } else {
+                const localInquiries = JSON.parse(localStorage.getItem('dipesh_local_inquiries') || '[]');
+                localInquiries.push(inquiryData);
+                localStorage.setItem('dipesh_local_inquiries', JSON.stringify(localInquiries));
+                triggerToast("Inquiry recorded in local sandbox!");
+            }
+
+            // Fire direct email notification to Dipesh
+            sendEmailToDipesh(`Inquiry for ${propTitle} from ${userName}`, emailBody);
+
+            closeInquiryModal();
+            document.getElementById('modal-user-name').value = "";
+            document.getElementById('modal-user-phone').value = "";
+        }
+
+        // Working Instant Direct WhatsApp Redirect inside Inquiry Modal
+        function sendInquiryDirectWhatsApp() {
+            const propTitle = document.getElementById('modal-property-title').innerText;
+            const userName = document.getElementById('modal-user-name').value || "Customer";
+            const userPhone = document.getElementById('modal-user-phone').value || "No number provided";
+            const moveInDate = document.getElementById('modal-move-date').value || "Not selected";
+
+            const formattedMessage = `Hello Dipesh Property Solutions,%0A%0AI am interested in the property/PG listing: *${encodeURIComponent(propTitle)}*.%0A%0AMy Details:%0A- Name: ${encodeURIComponent(userName)}%0A- Phone: ${encodeURIComponent(userPhone)}%0A- Preferred Move-in Date: ${encodeURIComponent(moveInDate)}%0A%0APlease connect with me as soon as possible. Thanks!`;
+            
+            const whatsappLink = `https://wa.me/919869486859?text=${formattedMessage}`;
+            window.open(whatsappLink, '_blank');
+            closeInquiryModal();
+        }
+
+        // ==============================================
+        // CONTACT & ABOUT US FORM SUBMISSIONS
+        // ==============================================
+        async function handleContactSubmission(event) {
+            event.preventDefault();
+
+            const cName = document.getElementById('contact-name').value;
+            const cEmail = document.getElementById('contact-email').value;
+            const cSubject = document.getElementById('contact-subject').value;
+            const cMessage = document.getElementById('contact-message').value;
+
+            const messageData = {
+                sender_name: cName,
+                sender_email: cEmail,
+                subject: cSubject,
+                message: cMessage
+            };
+
+            const emailBody = `
+=== NEW CONTACT SUPPORT TICKET ===
+Sender Name: ${cName}
+Sender Email: ${cEmail}
+Subject Category: ${cSubject}
+
+Message Contents:
+${cMessage}
+            `;
+
+            if (useCloudDb) {
+                try {
+                    const { error } = await supabaseClient.from('messages').insert([messageData]);
+                    if (error) throw error;
+                    triggerToast("Support ticket loaded successfully!");
+                } catch (e) {
+                    console.error("Cloud ticket failed.", e);
+                }
+            } else {
+                const localMsgs = JSON.parse(localStorage.getItem('dipesh_local_messages') || '[]');
+                localMsgs.push(messageData);
+                localStorage.setItem('dipesh_local_messages', JSON.stringify(localMsgs));
+                triggerToast("Ticket successfully sent to support desk!");
+            }
+
+            // Fire direct email notification to Dipesh
+            sendEmailToDipesh(`Support Ticket: ${cSubject} from ${cName}`, emailBody);
+
+            document.getElementById('contact-name').value = "";
+            document.getElementById('contact-email').value = "";
+            document.getElementById('contact-message').value = "";
+        }
+    </script>
+</body>
+</html>
